@@ -1,0 +1,69 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="mainMenuController">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">УГНЖ</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-show="authentication.isZhssUser"><a href="#/deps">Накопления</a></li>
+                <li ng-show="authentication.isZhssUser"><a href="#/bonusdeps">Премии</a></li>
+                <li ng-show="authentication.inQueue"><a href="#/queuestate">Состояние очереди</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" data-ng-hide="!authentication.isAuth">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{authentication.userName}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#/changepwd">Изменить пароль</a></li>
+                        <li><a href="#/changephone">Изменить номер телефона</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button data-ng-hide="!authentication.isAuth" data-ng-click="signout()" type="button" class="btn btn-default navbar-btn navbar-right" ng-cloak>Выход</button>
+        </div>
+    </div>
+</div>
+
+<section id="body" class="container" style="min-height: 858px;">
+    <h2>Изменение номера телефона</h2>
+    <!--<div class="panel panel-default">
+        <div class="panel-heading">Внимание</div>
+        <div class="panel-body">
+            <p>После того как вы смените номер телефона, вы должны будете его подтвердить</p>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div style="padding: 10px; border: 1px solid #ddd;">
+                <form name="formPnoneChange" class="form-horizontal" role="form">
+                    <div class="form-group has-feedback" ng-class="{ 'has-error': (formPnoneChange.$submitted || formPnoneChange.inputPhoneNumber.$touched) && formPnoneChange.inputPhoneNumber.$invalid }">
+                        <label for="inputPnoneNumber" class="col-sm-5 control-label">Новый номер мобильного телефона</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                <div class="input-group-addon">+7</div>
+                                <input name="inputPnoneNumber" type="text" class="form-control" placeholder="Новый номер телефона" ui-mask="(999) 99 99999" data-ng-model="phonechange.phoneNumber" required autofocus>
+                            </div>
+                            <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(formPnoneChange.$submitted || formPnoneChange.inputPhoneNumber.$touched) && formPnoneChange.inputPhoneNumber.$invalid"></span>
+                            <p class="help-block">Введите последние 10 цифр номера</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 col-sm-offset-5">
+                            <input class="btn btn-lg btn-primary btn-block" type="submit" data-ng-click="change()" style="margin-bottom: 10px;" value="Готово" ng-disabled="formPnoneChange.$invalid" />
+                        </div>
+                    </div>
+                    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'" style="margin-top: 10px; margin-bottom: 10px;">
+                        {{message}}
+   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,109 @@
+﻿<h2>Регистрация</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">Выберите как вы хотите зарегистрироваться</div>
+    <div class="panel-body">
+        <p>Если вы уже зарегистрированы, пожалуйста, выполните <a href="#/signin">вход в систему</a></p>
+        <p>Если вы не помните свой пароль - попробуйте <a href="#/commonrestorepwd">восстановить</a> его</p>
+        <p>Если вы участник какой-либо социальной программы, то выберие вкладку "Участник социальных программ". Если вы участвуете в программе "Жилищные строительные накопления", то вам нужна вкладка "Участник ЖСС"</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <ul class="nav nav-tabs">
+            <li class="active" role="presentation">
+                <a href="#/commonsignup">Участник социальных программ</a>
+            </li>
+            <li role="presentation">
+                <a href="#/signup">Участник ЖСС</a>
+            </li>
+        </ul>
+        <div style="padding: 10px 10px 0; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;">
+            <form name="commonSignUpForm" role="form" class="form-horizontal" novalidate>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputLastName.$touched) && commonSignUpForm.inputLastName.$invalid }">
+                    <label for="inputLastName" class="col-sm-5 control-label">Фамилия</label>
+                    <div class="col-sm-7">
+                        <input name="inputLastName" type="text" class="form-control" placeholder="Фамилия" data-ng-model="registration.lastName" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputLastName.$touched)  && commonSignUpForm.inputLastName.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputFirstName.$touched) && commonSignUpForm.inputFirstName.$invalid }">
+                    <label for="inputFirstName" class="col-sm-5 control-label">Имя</label>
+                    <div class="col-sm-7">
+                        <input name="inputFirstName" type="text" class="form-control" placeholder="Имя" data-ng-model="registration.firstName" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputFirstName.$touched) && commonSignUpForm.inputFirstName.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputMiddleName.$touched) && commonSignUpForm.inputMiddleName.$invalid }">
+                    <label for="inputMiddleName" class="col-sm-5 control-label">Отчество</label>
+                    <div class="col-sm-7">
+                        <input name="inputMiddleName" type="text" class="form-control" placeholder="Отчество" data-ng-model="registration.middleName" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputMiddleName.$touched) && commonSignUpForm.inputMiddleName.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputDocSeries.$touched) && commonSignUpForm.inputDocSeries.$invalid }">
+                    <label for="inputDocSeries" class="col-sm-5 control-label">Серия документа</label>
+                    <div class="col-sm-7">
+                        <input name="inputDocSeries" type="text" class="form-control" placeholder="Серия документа" data-ng-model="registration.docSeries" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputDocSeries.$touched) && commonSignUpForm.inputDocSeries.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputDocNumber.$touched) && commonSignUpForm.inputDocNumber.$invalid }">
+                    <label for="inputDocNumber" class="col-sm-5 control-label">Номер документа</label>
+                    <div class="col-sm-7">
+                        <input name="inputDocNumber" type="text" class="form-control" placeholder="Номер документа" data-ng-model="registration.docNumber" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputDocNumber.$touched) && commonSignUpForm.inputDocNumber.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputDocDate.$touched) && commonSignUpForm.inputDocDate.$invalid }">
+                    <label for="inputDocDate" class="col-sm-5 control-label">Дата выдачи документа</label>
+                    <div class="col-sm-7">
+                        <input name="inputDocDate" type="text" class="form-control" placeholder="Дата выдачи документа"
+                            ng-click="open($event)"
+                            datepicker-popup="{{format}}"
+                            data-ng-model="registration.docDate"
+                            is-open="opened"
+                            min-date="minDate"
+                            max-date="'2015-06-22'"
+                            datepicker-options="dateOptions"
+                            date-disabled="disabled(date, mode)"
+                            ng-required="true" show-button-bar="false" datepicker-local-date />
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputDocDate.$touched) && commonSignUpForm.inputDocDate.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputPhoneNumber.$touched) && commonSignUpForm.inputPhoneNumber.$invalid }">
+                    <label for="inputPhoneNumber" class="col-sm-5 control-label">Номер мобильного телефона</label>
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="inputAddonPhoneNumber">+7</span>
+                            <input name="inputPhoneNumber" type="text" class="form-control" aria-describedly="inputAddonPhoneNumber" placeholder="Номер телефона" ui-mask="(999) 99 99999" data-ng-model="registration.phoneNumber" required autofocus>
+                        </div>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputPhoneNumber.$touched) && commonSignUpForm.inputPhoneNumber.$invalid"></span>
+                        <p class="help-block">Введите последние 10 цифр номера</p>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (commonSignUpForm.$submitted || commonSignUpForm.inputSnils.$touched) && commonSignUpForm.inputSnils.$invalid }">
+                    <label for="inputSnils" class="col-sm-5 control-label">СНИЛС</label>
+                    <div class="col-sm-7">
+                        <input name="inputSnils" type="text" class="form-control" placeholder="СНИЛС" data-ng-model="registration.snils" ui-mask="999-999-999 99" required autofocus style="margin-bottom: 10px">
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(commonSignUpForm.$submitted || commonSignUpForm.inputSnils.$touched) && commonSignUpForm.inputSnils.$invalid"></span>
+                    </div>
+                </div>
+                <!--<button class="btn btn-lg btn-primary btn-block" type="submit" data-ng-click="signUp()" style="margin-bottom: 10px;">Готово</button>-->
+                <div class="form-group">
+                    <div class="col-sm-3 col-sm-offset-5">
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" data-ng-click="signUp()" style="margin-bottom: 10px;" value="Готово" ng-disabled="commonSignUpForm.$invalid" />
+                    </div>
+                </div>
+                <div data-ng-hide="!savedSuccessfully" class="alert alert-success" style="margin-bottom: 10px;">
+                    Вы успешно зарегистрированы. Ваш логин {{ login }}. Пароль выслан на указанный вами номер телефона
+                </div>
+                <div data-ng-hide="!errors.length" class="alert alert-danger" style="margin-bottom: 10px;">
+                    Ошибка при регистрации:
+                    <ul data-ng-repeat="error in errors">
+                        <li>{{error}}</li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

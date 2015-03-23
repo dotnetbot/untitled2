@@ -1,0 +1,66 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="mainMenuController">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">УГНЖ</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-show="authentication.isZhssUser"><a href="#/deps">Накопления</a></li>
+                <li ng-show="authentication.isZhssUser"><a href="#/bonusdeps">Премии</a></li>
+                <li ng-show="authentication.inQueue"><a href="#/queuestate">Состояние очереди</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" data-ng-hide="!authentication.isAuth">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{authentication.userName}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#/changepwd">Изменить пароль</a></li>
+                        <li><a href="#/changephone">Изменить номер телефона</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button data-ng-hide="!authentication.isAuth" data-ng-click="signout()" type="button" class="btn btn-default navbar-btn navbar-right" ng-cloak>Выход</button>
+        </div>
+    </div>
+</div>
+
+<section id="body" class="container" style="min-height: 858px;">
+    <h2>Изменение пароля</h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div style="padding: 10px; border: 1px solid #ddd;">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="inputOldPassword" class="col-sm-5 control-label">Старый пароль</label>
+                        <div class="col-sm-7">
+                            <input name="inputOldPassword" type="text" class="form-control" placeholder="Старый пароль" data-ng-model="pwdchange.oldPassword" required autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNewPassword" class="col-sm-5 control-label">Новый пароль</label>
+                        <div class="col-sm-7">
+                            <input name="inputNewPassword" type="text" class="form-control" placeholder="Новый пароль" data-ng-model="pwdchange.newPassword" required autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRepeatNewPassword" class="col-sm-5 control-label">Повторите новый пароль</label>
+                        <div class="col-sm-7">
+                            <input name="inputRepeatNewPassword" type="text" class="form-control" placeholder="Повторите новый пароль" data-ng-model="pwdchange.repeatNewPassword" required autofocus>
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" data-ng-click="change()">Ок</button>
+                    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'" style="margin-top: 10px; margin-bottom: 10px;">
+                        {{message}}
+   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

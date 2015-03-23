@@ -1,0 +1,64 @@
+﻿<h2>Регистрация</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">Выберите как вы хотите зарегистрироваться</div>
+    <div class="panel-body">
+        <p>Если вы уже зарегистрированы, пожалуйста, выполните <a href="#/signin">вход в систему</a></p>
+        <p>Если вы не помните свой пароль - попробуйте <a href="#/commonrestorepwd">восстановить</a> его</p>
+        <p>Если вы участник какой-либо социальной программы, то выберие вкладку "Участник социальных программ". Если вы участвуете в программе "Жилищные строительные накопления", то вам нужна вкладка "Участник ЖСС"</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <ul class="nav nav-tabs">
+            <li role="presentation">
+                <a href="#/commonsignup">Участник социальных программ</a>
+            </li>
+            <li class="active" role="presentation">
+                <a href="#/signup">Участник ЖСС</a>
+            </li>
+        </ul>
+        <div style="padding: 10px 10px 0px; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;">
+            <form name="signUpForm" role="form" class="form-horizontal">
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (signUpForm.$submitted || signUpForm.inputNumber.$touched) && signUpForm.inputNumber.$invalid }">
+                    <label for="inputNumber" class="col-sm-5 control-label">Номер счета</label>
+                    <div class="col-sm-7">
+                        <input name="inputNumber" type="text" class="form-control" placeholder="Номер счета" data-ng-model="registration.number"  ui-mask="9999 9999 9999 9999 9999" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(signUpForm.$submitted || signUpForm.inputNumber.$touched)  && signUpForm.inputNumber.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (signUpForm.$submitted || signUpForm.inputLastName.$touched) && signUpForm.inputLastName.$invalid }">
+                    <label for="inputLastName" class="col-sm-5 control-label">Фамилия</label>
+                    <div class="col-sm-7">
+                        <input name="inputLastName" type="text" class="form-control" placeholder="Фамилия" data-ng-model="registration.lastName" required autofocus>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(signUpForm.$submitted || signUpForm.inputLastName.$touched)  && signUpForm.inputLastName.$invalid"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (signUpForm.$submitted || signUpForm.inputPhoneNumber.$touched) && signUpForm.inputPhoneNumber.$invalid }">
+                    <label for="inputPhoneNumber" class="col-sm-5 control-label">Номер мобильного телефона</label>
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <div class="input-group-addon">+7</div>
+                            <input name="inputPhoneNumber" type="text" class="form-control" placeholder="Номер телефона" data-ng-model="registration.phoneNumber" ui-mask="(999) 99 99999" required autofocus>
+                        </div>
+                        <span class="glyphicon glyphicon-ban-circle form-control-feedback" aria-hidden="true" ng-show="(signUpForm.$submitted || signUpForm.inputPhoneNumber.$touched)  && signUpForm.inputPhoneNumber.$invalid"></span>
+                        <p class="help-block">Введите последние 10 цифр номера</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 col-sm-offset-5">
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" data-ng-click="signUp()" style="margin-bottom: 10px;" value="Готово" ng-disabled="signUpForm.$invalid" />
+                    </div>
+                </div>
+                <div data-ng-hide="!savedSuccessfully" class="alert alert-success" style="margin-bottom: 10px;">
+                    Вы успешно зарегистрированы. Ваш логин {{ login }}. Пароль выслан на указанный вами номер телефона
+                </div>
+                <div data-ng-hide="!errors.length" class="alert alert-danger" style="margin-bottom: 10px;">
+                    Ошибка при регистрации:
+                    <ul data-ng-repeat="error in errors">
+                        <li>{{error}}</li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
